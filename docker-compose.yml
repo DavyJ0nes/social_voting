@@ -4,6 +4,13 @@ services:
   twittervotes:
     build: ./twittervotes
     env_file: ./twittervotes/.env
+    environment:
+      - SP_TWITTER_KEY=PY6RodDp4y7TBtS2GXwS89w9c
+      - SP_TWITTER_SECRET=htL5YDOq4Q3aK8FZu8cQxWQzSSNPNwAJ9e1ISNt9gcAeBUy5c1
+      - SP_TWITTER_ACCESSTOKEN=1093044439-kqB4nRKIhjRgNwAKoW3cSUL4EVwpXCyS1wgAnEB
+      - SP_TWITTER_ACCESSSECRET=9Mxmdx7gMffk2QGNUJWqYFQWcxuE3Tr9tqEYSZx9R6oxO
+      - SP_MONGO_HOST=db
+      - SP_NSQ_HOST=nsqd
     depends_on:
       - db
       - nsqlookupd
@@ -20,6 +27,8 @@ services:
     command: mongod --smallfiles
     ports:
       - "27017:27017"
+    links:
+      - nsqd
     networks:
       - local
 
@@ -27,8 +36,8 @@ services:
     image: nsqio/nsq
     command: /nsqlookupd
     ports:
-      - "4160"
-      - "4161"
+      - "4160:4160"
+      - "4161:4161"
     networks:
       - local
     
@@ -36,8 +45,8 @@ services:
     image: nsqio/nsq
     command: /nsqd --lookupd-tcp-address=nsqlookupd:4160
     ports:
-      - "4150"
-      - "4151"
+      - "4150:4150"
+      - "4151:4151"
     depends_on:
       - nsqlookupd
     networks:

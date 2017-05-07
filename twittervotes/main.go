@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -57,17 +58,17 @@ func main() {
 
 var (
 	db     *mgo.Session
-	dbHost string = "mongodb://" + os.Getenv("SP_MONGO_HOST") + "/test"
+	dbHost string = os.Getenv("SP_MONGO_HOST")
 )
 
 // dialdb opens connection to mongo dbHost
 func dialdb() error {
 	// enablling debug
-	// mgo.SetDebug(true)
+	mgo.SetDebug(true)
 
-	// var aLogger *log.Logger
-	// aLogger = log.New(os.Stderr, "", log.LstdFlags)
-	// mgo.SetLogger(aLogger)
+	var aLogger *log.Logger
+	aLogger = log.New(os.Stderr, "", log.LstdFlags)
+	mgo.SetLogger(aLogger)
 
 	var err error
 	log.Printf("dialing mongodb: %s", dbHost)
@@ -100,6 +101,8 @@ func loadOptions() ([]string, error) {
 		options = append(options, p.Options...)
 	}
 	iter.Close()
+	fmt.Println("db Options:", options)
+	fmt.Println("-----------")
 	return options, iter.Err()
 }
 

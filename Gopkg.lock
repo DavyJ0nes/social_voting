@@ -1,0 +1,31 @@
+memo = "f9a275a5bf88299350fd8994362698a09cc05777e7e06466aa8284b63a7f020c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/bitly/go-nsq"
+  packages = ["."]
+  revision = "a53d495e81424aaf7a7665a9d32a97715c40e953"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/garyburd/go-oauth"
+  packages = ["oauth"]
+  revision = "18d3217f4d38f106335b3a2b2a08ce1c9299d009"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/golang/snappy"
+  packages = ["."]
+  revision = "7db9049039a047d955fe8c19b83c8ff5abd765c7"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/joeshaw/envdecode"
+  packages = ["."]
+  revision = "32118ea5f56d5358408e78d150be1843a695e35c"
+
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/mgo.v2"
+  packages = [".","bson","internal/json","internal/sasl","internal/scram"]
+  revision = "3f83fa5005286a7fe593b055f0d7771a7dce4655"
